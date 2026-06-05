@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ENZYNOVA | Venta de Enzimas Industriales y Etanol</title>
+    
+    <!-- Este bloque le dice al navegador exactamente cómo pintar los cuadros y colores -->
+    <style>
+        /* ==========================================================================
+           1. COLORES Y DISEÑO DE LA MARCA (VARIABLES)
+           ========================================================================== */
+        :root {
+            --color-primary: #0f4c81;       /* Azul industrial corporativo */
+            --color-secondary: #2d7a4d;     /* Verde Enzimas / Bio */
+            --color-accent: #e67e22;        /* Naranja Etanol / Energía */
+            --color-dark: #1a202c;          /* Gris oscuro para el Footer */
+            --color-light: #f7fafc;         /* Fondo gris claro de la página */
+            --color-white: #ffffff;         /* Blanco para los cuadros */
+            --color-gray: #718096;          /* Gris para los textos pequeños */
+            --color-border: #e2e8f0;
+
+            --font-main: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        /* RESETEO PARA EVITAR ERRORES DE ESPACIOS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--color-dark);
+            background-color: var(--color-light); /* Fondo general texturizado */
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { max-width: 100%; height: auto; display: block; border-radius: var(--border-radius); }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ==========================================================================
+           2. DISEÑO DEL MENÚ SUPERIOR
+           ========================================================================== */
+        .main-header {
+            background-color: var(--color-white);
+            box-shadow: var(--box-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            color: var(--color-primary);
+            font-weight: 800;
+        }
+
+        .logo h1 span { color: var(--color-secondary); }
+
+        .main-nav ul {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .main-nav a {
+            font-weight: 600;
+            color: var(--color-dark);
+            transition: color 0.3s ease;
+        }
+
+        .main-nav a:hover { color: var(--color-secondary); }
+
+        .btn-nav {
+            background-color: var(--color-accent);
+            color: var(--color-white) !important;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+        }
+
+        /* ==========================================================================
+           3. DISEÑO DEL BANNER DE BIENVENIDA (HERO)
+           ========================================================================== */
+        .hero-section {
+            background: linear-gradient(rgba(15, 76, 129, 0.85), rgba(26, 32, 44, 0.9)), 
+                        url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            color: var(--color-white);
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .hero-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem auto;
+            opacity: 0.9;
+        }
+
+        /* BOTONES INTERACTIVOS */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.2s ease;
+        }
+
+        .btn-primary { background-color: var(--color-primary); color: var(--color-white); }
+        .btn-primary:hover { transform: translateY(-2px); background-color: #0b3860; }
+        .btn-outline { border: 2px solid var(--color-white); color: var(--color-white); background: transparent; }
+        .btn-outline:hover { background-color: var(--color-white); color: var(--color-dark); transform: translateY(-2px); }
+
+        /* ==========================================================================
+           4. DISEÑO DE LOS CUADROS DE CONTENIDO (GRID)
+           ========================================================================== */
+        .stats-section {
+            background-color: var(--color-white);
+            padding: 1.5rem 0;
+            box-shadow: var(--box-shadow);
+            margin-top: -40px;
+            position: relative;
+            border-radius: var(--border-radius);
+            z-index: 10;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item h4 { font-size: 2.3rem; color: var(--color-secondary); font-weight: 700; }
+        .stat-item p { color: var(--color-gray); font-weight: 500; font-size: 0.9rem; }
+
+        /* SECCIÓN DE PRODUCTOS (TARJETAS BLANCAS CON BORDE AZUL) */
+        .products-section { padding: 4.5rem 0; }
+        
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem auto;
+        }
+
+        .section-header h3 { font-size: 2rem; color: var(--color-primary); margin-bottom: 0.5rem; }
+        .section-header p { color: var(--color-gray); }
+
+        .grid-products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background-color: var(--color-white);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            border-top: 5px solid var(--color-primary); /* Línea azul superior */
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover { transform: translateY(-5px); }
+        .product-card h4 { font-size: 1.3rem; margin-bottom: 0.5rem; color: var(--color-dark); }
+        .product-card p { color: var(--color-gray); margin-bottom: 1.5rem; font-size: 0.95rem; }
+        .card-link { color: var(--color-secondary); font-weight: bold; }
+
+        /* SECCIÓN DE IMÁGENES Y TEXTO LADO A LADO */
+        .applications-section { background-color: var(--color-white); padding: 4.5rem 0; }
+        .app-row { display: flex; align-items: center; gap: 4rem; margin-bottom: 4rem; flex-wrap: wrap; }
+        .app-row:nth-child(even) { flex-direction: row-reverse; }
+        .app-col { flex: 1; min-width: 300px; }
+        .app-col h4 { font-size: 1.8rem; color: var(--color-primary); margin-bottom: 1rem; }
+        .app-col ul { margin-top: 1rem; }
+        .app-col li { margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .app-col li::before { content: "✓"; color: var(--color-secondary); font-weight: bold; }
+
+        /* ==========================================================================
+           5. DISEÑO DEL CUADRO DEL FORMULARIO
+           ========================================================================== */
+        .contact-section { padding: 4.5rem 0; }
+        .contact-wrapper { background-color: var(--color-white); padding: 3rem; border-radius: var(--border-radius); box-shadow: var(--box-shadow); max-width: 800px; margin: 0 auto; }
+        .contact-form { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        .form-group { display: flex; flex-direction: column; }
+        .form-group.full-width { grid-column: span 2; }
+        .form-group label { font-weight: 600; margin-bottom: 0.4rem; font-size: 0.9rem; }
+        .form-group input, .form-group textarea, .form-group select { padding: 0.75rem; border: 1px solid var(--color-border); border-radius: var(--border-radius); outline: none; font-family: sans-serif; }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--color-primary); }
+
+        /* ==========================================================================
+           6. DISEÑO DEL PIE DE PÁGINA OSCURO (FOOTER CORPORATIVO)
+           ========================================================================== */
+        .main-footer {
+            background-color: var(--color-dark); /* Cuadro oscuro abajo */
+            color: var(--color-white);
+            padding: 4.5rem 0 2rem 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h5 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-col h5::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--color-secondary); /* Línea verde decorativa */
+        }
+
+        .footer-col p { color: #a0aec0; font-size: 0.9rem; }
+        .footer-col ul li { margin-bottom: 0.7rem; }
+        .footer-col ul li a { color: #a0aec0; transition: color 0.2s ease; }
+        .footer-col ul li a:hover { color: var(--color-white); }
+        .footer-bottom { border-top: 1px solid #2d3748; padding-top: 2rem; text-align: center; color: #718096; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+    <!-- Menú de Navegación -->
+    <header class="main-header">
+        <div class="container navbar">
+            <div class="logo">
+                <h1>ENZY<span>NOVA</span></h1>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#productos">Productos</a></li>
+                    <li><a href="#aplicaciones">Aplicaciones</a></li>
+                    <li><a href="#contacto" class="btn-nav">Cotizar</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Banner Principal -->
+    <section id="inicio" class="hero-section">
+        <div class="container hero-content">
+            <h2>Biocatálisis y Pureza Química a Escala Industrial</h2>
+            <p>Suministramos soluciones enzimáticas de alto rendimiento y etanol de grado técnico adaptados a las exigencias de su planta de producción.</p>
+            <div class="hero-buttons">
+                <a href="#productos" class="btn btn-primary">Ver Catálogo</a>
+                <a href="#contacto" class="btn btn-outline">Contactar un Asesor</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cuadros Flotantes de Datos/Métricas -->
+    <section class="container">
+        <div class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h4>+15M</h4>
+                    <p>Litros de Etanol Anuales</p>
+                </div>
+                <div class="stat-item">
+                    <h4>45+</h4>
+                    <p>Enzimas Especializadas</p>
+                </div>
+                <div class="stat-item">
+                    <h4>24/7</h4>
+                    <p>Soporte Técnico Especializado</p>
+                </div>
+                <div class="stat-item">
+                    <h4>ISO</h4>
+                    <p>Certificación de Calidad Mundial</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Productos en Cuadros / Tarjetas -->
+    <section id="productos" class="products-section">
+        <div class="container">
+            <div class="section-header">
+                <h3>Nuestras Líneas Principales</h3>
+                <p>Desarrollos biotecnológicos estables y compuestos químicos puros diseñados bajo normativas internacionales.</p>
+            </div>
+            
+            <div class="grid-products">
+                <div class="product-card">
+                    <h4>Enzimas Industriales</h4>
+                    <p>Catálisis eficiente mediante amilasas, glucoamilasas y proteasas líquidas o en polvo. Ideales para optimizar la degradación de almidones y acelerar procesos biológicos complejos.</p>
+                    <a href="#contacto" class="card-link">Solicitar Ficha Técnica &rarr;</a>
+                </div>
+
+                <div class="product-card">
+                    <h4>Etanol e Hidratos</h4>
+                    <p>Alcohol rectificado, anhidro y desnaturalizado de alta graduación. Suministrado de manera segura en cisternas o contenedores IBC para formulaciones químicas avanzadas.</p>
+                    <a href="#contacto" class="card-link">Cotizar Volumen &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Secciones Informativas con Imágenes Reales -->
+    <section id="aplicaciones" class="applications-section">
+        <div class="container">
+            <div class="section-header">
+                <h3>Sectores e Integración</h3>
+                <p>Nuestras formulaciones actúan directamente en la mejora de subproductos y optimización de recursos en múltiples mercados.</p>
+            </div>
+
+            <div class="app-row">
+                <div class="app-col">
+                    <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=600&q=80" alt="Laboratorio Industrial">
+                </div>
+                <div class="app-col">
+                    <h4>Optimización en Destilerías y Biocombustibles</h4>
+                    <p>La correcta dosificación enzimática acelera la fermentación reduciendo los tiempos muertos en los tanques de destilación de azúcares y almidones.</p>
+                    <ul>
+                        <li>Máxima conversión de glucosa a etanol.</li>
+                        <li>Reducción significativa de la viscosidad en masas.</li>
+                        <li>Estabilidad térmica garantizada.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="app-row">
+                <div class="app-col">
+                    <img src="https://images.unsplash.com/photo-1581093588401-f5c32b66b4d1?auto=format&fit=crop&w=600&q=80" alt="Maquinaria Industrial de Etanol">
+                </div>
+                <div class="app-col">
+                    <h4>Industria Alimentaria y Farmacéutica</h4>
+                    <p>Proveemos insumos con rigurosos certificados de pureza para garantizar la inocuidad alimentaria y la consistencia en formulaciones de soluciones desinfectantes o cosméticas.</p>
+                    <ul>
+                        <li>Etanol apto para grado cosmético y antiséptico.</li>
+                        <li>Enzimas purificadas libres de alérgenos cruzados.</li>
+                        <li>Trazabilidad completa de lote de fabricación.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cuadro del Formulario de Contacto -->
+    <section id="contacto" class="contact-section">
+        <div class="container">
+            <div class="section-header">
+                <h3>Formulario de Cotización Técnica</h3>
+                <p>Envíenos los requerimientos de su planta productiva y un ingeniero especialista se comunicará de inmediato.</p>
+            </div>
+
+            <div class="contact-wrapper">
+                <form class="contact-form" onsubmit="event.preventDefault();">
+                    <div class="form-group">
+                        <label>Nombre Completo</label>
+                        <input type="text" placeholder="Ej. Ing. Carlos Mendoza">
+                    </div>
+                    <div class="form-group">
+                        <label>Empresa / Organización</label>
+                        <input type="text" placeholder="Ej. Destilerías del Norte S.A.">
+                    </div>
+                    <div class="form-group">
+                        <label>Correo Corporativo</label>
+                        <input type="email" placeholder="carlos.mendoza@empresa.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Línea de Interés</label>
+                        <select>
+                            <option>Seleccione una opción</option>
+                            <option>Enzimas (Amilasas / Proteasas)</option>
+                            <option>Etanol Rectificado / Anhidro</option>
+                        </select>
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Detalles del Requerimiento</label>
+                        <textarea rows="4" placeholder="Escriba aquí los detalles técnicos o volumen requerido..."></textarea>
+                    </div>
+                    <div class="form-group full-width">
+                        <button type="button" class="btn btn-primary" style="width: 100%;">Enviar Solicitud de Cotización</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pie de Página Corporativo (Footer Completo) -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h5>ENZYNOVA</h5>
+                    <p>Líderes globales en el suministro biotecnológico y compuestos químicos industriales de alta pureza para la optimización de procesos de manufactura.</p>
+                </div>
+                <div class="footer-col">
+                    <h5>Soluciones</h5>
+                    <ul>
+                        <li><a href="#productos">Línea de Enzimas</a></li>
+                        <li><a href="#productos">Suministro de Etanol</a></li>
+                        <li><a href="#aplicaciones">Sectores de Aplicación</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Documentación</h5>
+                    <ul>
+                        <li><a href="#">Fichas de Seguridad (MSDS)</a></li>
+                        <li><a href="#">Especificaciones Técnicas</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Contacto Principal</h5>
+                    <p style="margin-bottom: 0.5rem;">📍 Universidad Politecnica Estatal del Carchi UPEC</p>
+                    <p style="margin-bottom: 0.5rem;">📞 +593 180093399</p>
+                    <p>✉️ productos.support@enzynova.com</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p> &copy; 2026 ENZYNOVA Global S.A. Todos los derechos reservados. Optimización biológica para la industria.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
